@@ -1,0 +1,5 @@
+# Hanya file gambar yang boleh disajikan; skrip tidak boleh dijalankan
+Options -Indexes
+<FilesMatch "\.(php\d?|phtml|phar|pl|py|cgi|sh|html?|svg)$">
+  Require all denied
+</FilesMatch>

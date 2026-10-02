@@ -1,0 +1,4 @@
+storage/*.sqlite*
+assets/uploads/*
+!assets/uploads/.htaccess
+!assets/uploads/.gitkeep

@@ -1,0 +1,168 @@
+/* ==========================================================
+   Angelique Ballet — custom styles
+   Melengkapi Tailwind: token warna, animasi, ornamen tipis.
+   ========================================================== */
+
+:root {
+  --ivory: #FBF7F1;
+  --cream: #F3ECE2;
+  --blush: #F4E1DE;
+  --rose: #B9838A;
+  --rose-deep: #8E5E66;
+  --champagne: #C6A66B;
+  --charcoal: #2F2A2B;
+  --ease-ballet: cubic-bezier(.22, .61, .36, 1);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  background: var(--ivory);
+  color: var(--charcoal);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--blush); color: var(--rose-deep); }
+
+/* ---------- Ornamen ---------- */
+.eyebrow {
+  font-size: .72rem;
+  letter-spacing: .32em;
+  text-transform: uppercase;
+  color: var(--rose-deep);
+}
+
+/* Garis tipis + belah ketupat kecil di tengah, seperti ornamen undangan klasik */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: .75rem;
+  color: var(--champagne);
+}
+.ornament::before,
+.ornament::after {
+  content: "";
+  height: 1px;
+  width: 3.5rem;
+  background: currentColor;
+  opacity: .7;
+}
+.ornament span {
+  width: 6px;
+  height: 6px;
+  transform: rotate(45deg);
+  border: 1px solid currentColor;
+}
+
+/* Bingkai foto dengan garis emas tipis yang bergeser */
+.frame { position: relative; }
+.frame::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(14px, 14px);
+  border: 1px solid var(--champagne);
+  opacity: .6;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* ---------- Header ---------- */
+.site-header { transition: background-color .5s var(--ease-ballet), box-shadow .5s var(--ease-ballet); }
+.site-header.is-scrolled {
+  background: rgba(251, 247, 241, .92);
+  backdrop-filter: saturate(140%) blur(10px);
+  -webkit-backdrop-filter: saturate(140%) blur(10px);
+  box-shadow: 0 1px 0 rgba(198, 166, 107, .25);
+}
+
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 1px;
+  background: var(--champagne);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform .5s var(--ease-ballet);
+}
+.nav-link:hover::after,
+.nav-link.is-active::after { transform: scaleX(1); }
+
+/* Menu mobile */
+.mobile-menu {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: opacity .45s var(--ease-ballet), transform .45s var(--ease-ballet), visibility .45s;
+}
+.mobile-menu.is-open { opacity: 1; visibility: visible; transform: none; }
+
+/* ---------- Animasi reveal (dipicu IntersectionObserver di main.js) ---------- */
+.js .reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .9s var(--ease-ballet), transform .9s var(--ease-ballet);
+  transition-delay: var(--delay, 0ms);
+}
+.js .reveal.is-visible { opacity: 1; transform: none; }
+
+/* Hero: gerakan pelan saat halaman dibuka */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.hero-rise { animation: rise 1.2s var(--ease-ballet) both; animation-delay: var(--delay, 0ms); }
+
+/* ---------- Kartu ---------- */
+.card {
+  transition: transform .6s var(--ease-ballet), box-shadow .6s var(--ease-ballet), border-color .6s;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px -24px rgba(142, 94, 102, .45);
+  border-color: rgba(198, 166, 107, .6);
+}
+
+/* ---------- Galeri ---------- */
+.gallery-item img { transition: transform 1.2s var(--ease-ballet), filter 1.2s var(--ease-ballet); }
+.gallery-item:hover img { transform: scale(1.04); filter: saturate(1.05); }
+
+/* ---------- Testimoni (scroll-snap di mobile) ---------- */
+.snap-row { scrollbar-width: none; }
+.snap-row::-webkit-scrollbar { display: none; }
+
+/* ---------- Floating WhatsApp ---------- */
+.wa-float {
+  transition: transform .5s var(--ease-ballet), box-shadow .5s var(--ease-ballet);
+  box-shadow: 0 10px 30px -10px rgba(47, 42, 43, .45);
+}
+.wa-float:hover { transform: translateY(-3px); }
+.wa-float::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  border: 1px solid var(--rose);
+  animation: halo 3.2s var(--ease-ballet) infinite;
+}
+@keyframes halo {
+  0%   { transform: scale(1);   opacity: .7; }
+  70%  { transform: scale(1.5); opacity: 0; }
+  100% { opacity: 0; }
+}
+
+/* Fokus keyboard yang terlihat tapi tetap halus */
+:focus-visible { outline: 1px solid var(--rose-deep); outline-offset: 3px; }
+
+/* Hormati preferensi pengguna yang mengurangi animasi */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+  .js .reveal { opacity: 1; transform: none; }
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- TODO: Open Graph image. Facebook/WhatsApp TIDAK mendukung SVG,
+       ekspor versi 1200x630 sebagai og-image.jpg lalu perbarui meta og:image di index.html -->
+  <rect width="1200" height="630" fill="#FBF7F1"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#C6A66B" stroke-width="1.5"/>
+  <text x="600" y="300" text-anchor="middle" font-family="Georgia, serif" font-size="88" fill="#2F2A2B">Angelique Ballet</text>
+  <text x="600" y="370" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="34" fill="#8E5E66">Studio Balet Klasik · Yogyakarta</text>
+</svg>

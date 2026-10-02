@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" preserveAspectRatio="xMidYMid slice">
+  <!-- TODO: Placeholder. Ganti dengan foto asli (portrait 3:4, format .webp/.jpg) -->
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F4E1DE"/>
+      <stop offset="1" stop-color="#E7CFC9"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="800" fill="url(#g)"/>
+  <g fill="none" stroke="#C6A66B" stroke-width="1.5" opacity=".7">
+    <circle cx="300" cy="400" r="150"/>
+    <path d="M190 470 C 250 330, 350 330, 410 470" />
+    <path d="M300 250 L300 550" stroke-dasharray="2 8"/>
+  </g>
+  <text x="300" y="640" text-anchor="middle" font-family="Georgia, serif" font-style="italic" font-size="26" fill="#8E5E66">Angelique Ballet</text>
+</svg>
